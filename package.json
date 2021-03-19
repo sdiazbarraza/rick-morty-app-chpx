@@ -1,0 +1,27 @@
+{
+  "name": "rickandmorty",
+  "version": "1.0.0",
+  "description": "Rick and morty app chpx",
+  "main": "index.js",
+  "dependencies": {
+    "rickmortyapi": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simp06/rick-morty-app-chpx.git"
+  },
+  "keywords": [
+    "rick",
+    "chpx"
+  ],
+  "author": "Sebastian Diaz -developer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/simp06/rick-morty-app-chpx/issues"
+  },
+  "homepage": "https://github.com/simp06/rick-morty-app-chpx#readme"
+}
