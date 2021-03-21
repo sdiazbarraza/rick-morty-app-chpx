@@ -25,6 +25,7 @@ const metodos = ()=> {
 const Init =()=>{
    const CharCount =()=>{
      let init = async()=>{
+      console.time('Tiempo ejecucion');     
        const _locations ={
          cantidadPaginas : 0,
          entidad : "locations",
@@ -69,6 +70,7 @@ const Init =()=>{
         metodos().obtenerOcurrencia(data,_locations);
         metodos().obtenerOcurrencia(data,_episodes);
         metodos().obtenerOcurrencia(data,_characters);
+        console.timeEnd('Tiempo ejecucion');
         })
      };
      
