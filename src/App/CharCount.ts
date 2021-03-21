@@ -1,27 +1,7 @@
-const query = require("../services/querys");
-const paginas = require("../services/charCount/paginas");
-const texto = require("../utils/txt");
-const metodos = ()=> {
-    return {
-      
-      obtenerData : (data,entidad) =>{
-        let cantidadDeLetras = 0;
-        for (var key in data) {
-          var currentArray = data[key];
-            for(var i = 0; i < currentArray.results.length; i += 1) {
-              cantidadDeLetras+= texto.countCharacter(currentArray.results[i].name,entidad.letra);
-            }
-        }
-        console.log(cantidadDeLetras,`caracteres ${entidad.letra}  en total en ${entidad.entidad}`);
-      },
-      
-      obtenerOcurrencia : (data,entidad)=>{
-        entidad.cantidadPaginas = data[`_${entidad.entidad}`].info.pages;
-        let queryFilterLocations = query.crearQueryFilter(entidad.entidad, entidad.cantidadPaginas,entidad.filter,entidad.results);
-        query.ejecutar(queryFilterLocations).then((data)=>{metodos().obtenerData(data,entidad)});
-      }
-    }
-}
+var paginas = require("../services/paginas");
+
+var metodos = require("../utils/CharCount/metodos");
+var metodosEp = require("../utils/EpisodeLo/metodos");
 const Init =()=>{
    const CharCount =()=>{
      let init = async()=>{
@@ -66,16 +46,42 @@ const Init =()=>{
           }
         }
       }`).then((data)=>{
-       //  _locations.obtenerOcurrencia(data);
-        metodos().obtenerOcurrencia(data,_locations);
-        metodos().obtenerOcurrencia(data,_episodes);
-        metodos().obtenerOcurrencia(data,_characters);
+        metodos.obtenerOcurrencia(data,_locations);
+         metodos.obtenerOcurrencia(data,_episodes);
+        metodos.obtenerOcurrencia(data,_characters);
         console.timeEnd('Tiempo ejecucion');
         })
      };
      
      init();
     }
+    const _CharCount =()=>{
+      let init = async()=>{
+       console.time('Tiempo ejecucion');     
+       const _episodes ={
+         cantidadPaginas : 0,
+         entidad : "episodes",
+         filter :  '',
+         results : "name characters{origin{name}}",
+         letra:"e"
+       }
+        await paginas.obtenerCantidadPaginas(`{_episodes:episodes(page:1) {
+          info{
+            count
+            pages
+          }
+        }
+         
+       }`).then((data)=>{
+        console.time('Tiempo ejecucion EpLocation');
+        metodosEp.obtenerListado(data,_episodes)
+         console.timeEnd('Tiempo ejecucion EpLocation');
+         })
+      };
+      
+      init();
+     }
+     _CharCount();
     CharCount();
   
   }

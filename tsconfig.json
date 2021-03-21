@@ -7,7 +7,7 @@
         "types": ["node"],
     },
     "include": [
-        "src/**/*.ts", "src/utils/txt.ts", "src/index.ts", "src/services/charCount/paginas.ts", "src/services/charCount/querys.js", "src/services/querys.ts"   ],
+        "src/**/*.ts", "src/utils/txt.ts", "src/index.ts", "src/services/paginas.ts", "src/services/charCount/querys.js", "src/services/querys.ts"   ],
     "exclude": [
         "node_modules"
     ]

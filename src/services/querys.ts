@@ -1,7 +1,6 @@
 import { request, gql } from 'graphql-request';
-
 const baseUrl = 'https://rickandmortyapi.com/graphql';
-import { FilterCharacter,FilterEpisode,FilterLocation} from "./charCount/interface";
+
 
 const ejecutar = async(query):Promise<void>=>{
   
@@ -15,16 +14,19 @@ const crearQueryFilter = (schema:string,pages:number|1,filter:String ,results:st
     return `${schema}(filter: ${filter}){results {${results}}}`;
 
   }else{
-    let queryString = "";
-    let coma = ",";
-   
+    let queryString :String= "";
+    let coma:String = ",";
+    let _filter:String = "";
+    
+    if(filter!=""){
+      _filter=`,filter:${filter}`;
+    }
     for(let index=0;index<pages;index++){
     
        if(index==pages){
         coma = "";
        }
-   
-       queryString+=`${schema}Page${index+1}:${schema}(page:${index+1},filter: ${filter}){ results {${results}}}${coma}`;
+       queryString+=`${schema}Page${index+1}:${schema}(page:${index+1}${_filter}){ results {${results}}}${coma}`;
    
       }
     return `{${queryString}}`;
