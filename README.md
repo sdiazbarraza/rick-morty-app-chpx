@@ -14,7 +14,31 @@ _Crear directorio_
 ```
 mkdir api-example-rick-morty
 ```
+_Estructura de aplicación_
 
+```
+├── dist/
+├── node_modules/
+├── src/
+  ├── App/
+    ├── Charcount.ts
+    ├── EpisodeLocations.ts
+  ├── services/
+    ├──paginas.ts
+    ├──querys.ts
+  ├── utils/
+    ├── CharCount/
+      ├── metodos.ts
+    ├── EpisodeLo/
+      ├── metodos.ts
+    ├── txt.ts  
+  ├── index.ts  
+  
+├── package-lock.json
+├── package.json
+├── tsconfig.json
+├── tslint.json
+```
 _Clonar repo_
 
 ```
